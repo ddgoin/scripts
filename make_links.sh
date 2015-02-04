@@ -7,9 +7,8 @@
 ########## Variables
 
 timestamp=$(date +%F_%T)
-dirname=$(basename `pwd`)
-dir="$HOME/$dirname"                   # dotfiles directory
-olddir="$HOME/$dirname/backup/$timestamp"            # old dotfiles backup directory
+dir=$(pwd)                   # dotfiles directory
+olddir="$dir/backup/$timestamp"            # old dotfiles backup directory
 files="bin sbin"    # list of files/folders to symlink in homedir
 
 ##########
