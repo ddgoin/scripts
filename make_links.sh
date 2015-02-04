@@ -7,8 +7,9 @@
 ########## Variables
 
 timestamp=$(date +%F_%T)
-dir="$HOME/scripts"                   # dotfiles directory
-olddir="$HOME/scripts/backup/$timestamp"            # old dotfiles backup directory
+dirname=$(basename `pwd`)
+dir="$HOME/$dirname"                   # dotfiles directory
+olddir="$HOME/$dirname/backup/$timestamp"            # old dotfiles backup directory
 files="bin sbin"    # list of files/folders to symlink in homedir
 
 ##########
@@ -24,10 +25,10 @@ cd $dir
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
 	echo " $file:"
-	if [[ -s "$HOME/$file" ]]; then
+	if [[ -f "$HOME/$file" ]]; then
 		echo "   backing up old file"
 		mv $HOME/$file $olddir
 	fi
 	echo "   creating symlink"
-	ln -s $dir/$file ~/$file
+	ln -sf $dir/$file $HOME/$file
 done
