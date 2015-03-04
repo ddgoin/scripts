@@ -5,7 +5,7 @@
 # remotely and do the same.
 #
 # Attaches to an existing session named $SESSION or will create one if missing.
-# The created session will be pre-populated with a number of windows. 
+# The created session will be pre-populated with a number of windows.
 #
 # For example, window 0 running IRC, window 1 running email, window 2 logged
 # into a router used daily.
@@ -15,7 +15,7 @@
 #   o If session already exists, instantiate any missing windows.
 #     This could be done by checking tmux list-windows, not sure needed.
 #
-#   o Window 0 automatically changes name to 'weechat 0.3.3', ignoring 
+#   o Window 0 automatically changes name to 'weechat 0.3.3', ignoring
 #     the -n option. The following should fix it, but does not:
 #       tmux set-window-option -t $SESSION:0 automatic-rename off
 #     Same thing happens when issuing configure command on Arista switches.
@@ -29,11 +29,10 @@ SESSION=$USER
 tmux has-session -t $SESSION
 if [ $? -eq 0 ]; then
 	echo "Session $SESSION already exists. Attaching."
-	sleep 1
 	tmux attach -t $SESSION
 	exit 0;
 fi
-				   
+
 # create a new session, named $SESSION, and detach from it
 tmux new-session -d -s $SESSION
 
@@ -46,7 +45,7 @@ tmux new-window    -t $SESSION:1 -n local
 # After those base windows are statically defined, what follows depends where
 # I'm working and what my focus is.
 # So these new windows will just  number sequentially.
-					   
+
 # all done. select starting window and get to work
 # you may need to cycle through windows and type in passwords
 # if you don't use ssh keys
