@@ -23,7 +23,14 @@
 ################################################################################
 
 # the name of your primary tmux session
-SESSION=$USER
+if [ -z "$1" ]; then
+	SESSION=$USER
+else
+	SESSION="$1"
+fi
+
+#echo -en "\033]0;$SESSION\a"
+echo -en "\033]0;${PWD##*/}\a"
 
 # if the session is already running, just attach to it.
 tmux has-session -t $SESSION
